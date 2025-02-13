@@ -11,7 +11,10 @@ class PriceServiceTests(TestCase):
         distance = 5
         traffic_level = TrafficLevel.LOW
         demand_level = DemandLevel.NORMAL
-        fare_details = self.price_service.calculate_fare(distance, traffic_level, demand_level)
+        current_hour_of_the_day = 3
+        fare_details = self.price_service.calculate_fare(distance, traffic_level, demand_level, current_hour_of_the_day)
+
+        print(fare_details)
 
         # Standard,  no multipliers applied 
         # Base fare + distance fare
