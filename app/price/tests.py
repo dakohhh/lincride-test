@@ -13,11 +13,6 @@ class PriceServiceTests(TestCase):
         demand_level = DemandLevel.NORMAL
         current_hour_of_the_day = 3
         fare_details = self.price_service.calculate_fare(distance, traffic_level, demand_level, current_hour_of_the_day)
-
-        print(fare_details)
-
-        # Standard,  no multipliers applied 
-        # Base fare + distance fare
         self.assertEqual(fare_details["total_fare"], 7.5)
 
 
@@ -28,8 +23,6 @@ class PriceServiceTests(TestCase):
         current_hour_of_the_day  =  3
         fare_details = self.price_service.calculate_fare(distance, traffic_level, demand_level, current_hour_of_the_day)
     
-        # Standard,  no multipliers applied 
-        # Base fare + distance fare
         self.assertEqual(fare_details["total_fare"], 15.75)
 
 
