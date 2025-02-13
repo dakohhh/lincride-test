@@ -1,0 +1,35 @@
+services:
+  server:
+    build: .
+    ports:
+      - 8080:8000
+    
+    environment:
+      - ALLOWED_HOSTS=example.com
+      - CSRF_TRUSTED_ORIGINS=http://example.com
+      - DJANGO_SETTINGS_MODULE=config.django.production
+      - SECRET_KEY=secret
+      - DJANGO_DEBUG=False
+      - DATABASE_URL=postgres://user:password@database:5432/postgres
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - REDIS_URL=redis://redis:6379/0
+      - MAILER_SMTP_HOST=localhost
+      - MAILER_SMTP_PORT=2525
+      - MAILER_SMTP_USER=user
+      - MAILER_SMTP_PASSWORD=pass
+      - MAILER_SMTP_TLS=False
+      - DEFAULT_FROM_EMAIL=user@example.com
+    depends_on:
+      - database
+
+  database:
+    image: postgres
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
