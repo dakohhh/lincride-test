@@ -13,11 +13,11 @@ class FareCalculatorView(GenericAPIView):
     @extend_schema(
         summary="Calculate fare",
         tags=["Price"],
+        auth=[],
         parameters=[
             OpenApiParameter(name="traffic_level", description="Traffic level", required=True, type=OpenApiTypes.STR, enum=TrafficLevel.values()),
             OpenApiParameter(name="demand_level", description="Demand level", required=True, type=OpenApiTypes.STR, enum=DemandLevel.values()),
             OpenApiParameter(name="distance", description="Distance in kilometers", required=True, type=OpenApiTypes.FLOAT),
-
         ]
     )
     def get(self, request: Request):
